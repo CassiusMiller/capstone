@@ -21,9 +21,26 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-          <a class="nav-link" href="#">Features</a>
-          <a class="nav-link" href="#">Pricing</a>
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+          <a class="nav-link" href="">Property</a>
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>          
+          {% if user.is_authenticated %}
+              Hello, {{ user.username }}
+              <button type="button" class="btn btn-outline-warning"><a href="{% url 'logout' %}">Logout</a></button>
+              {% if user.is_property_manager %}
+                <a class="nav-link" href="{% url 'contracts' %}">Contracts</a>
+                <a class="nav-link" href="{% url 'maintenancereq' %}">Maintance Request</a>
+                <a class="nav-link" href="{% url 'tenant' %}">payment</a>
+                <a class="nav-link" href="{% url 'financials' %}">Financials</a>
+                <a class="nav-link" href="{% url 'tax' %}">Taxes</a>
+                {% elif user.is_tenant %}
+                <a class="nav-link" href="{% url 'maintance' %}">Maintance</a>
+                <a class="nav-link" href="{% url 'payment' %}">payment</a>
+                {% endif %}
+          {% else %}
+              <a href="{% url 'login' %}">Login</a>
+              <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+          {% endif %}          
         </div>
       </div>
     </div>

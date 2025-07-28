@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}YP|Home{% endblock title %}
+{% block title %}Home{% endblock title %}
 
 {% block content %}
-<h1>this is my home page</h1>
-
+<div class="background">
+  <div class="homeBody">
+    <h2>Welcome to</h2>
+    <h1>Your Property</h1>
+    <h2>Your Way</h2>
+    <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
+    <a href="{% url 'signup' %}" class="btn btn-outline-success">Sign Up</a>
+  </div>
+</div>
 {% endblock content %}
